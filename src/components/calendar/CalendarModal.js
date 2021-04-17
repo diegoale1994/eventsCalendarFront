@@ -5,7 +5,7 @@ import moment from 'moment';
 import Swal from 'sweetalert2'
 import { useDispatch, useSelector } from 'react-redux';
 import { uiCloseModal } from './../../actions/ui'
-import { eventAddNew, eventClearActiveNote, eventUpdated } from '../../actions/events';
+import { eventClearActiveNote, eventStartAddNew, eventStartUpdate } from '../../actions/events';
 
 const customStyles = {
     content: {
@@ -67,8 +67,6 @@ export const CalendarModal = () => {
         const momentStart = moment(start);
         const momentEnd = moment(end);
 
-        console.log({ momentStart, momentEnd });
-
         if (momentStart.isSameOrAfter(momentEnd)) {
             return Swal.fire('Error', 'La fecha fin debe ser mayor a la fecha de inicio', 'error');
         }
@@ -80,16 +78,9 @@ export const CalendarModal = () => {
 
         //Todo save in database
         if (activeEvent) {
-            dispatch(eventUpdated(formValues));
+            dispatch(eventStartUpdate(formValues));
         } else {
-            dispatch(eventAddNew({
-                ...formValues,
-                id: new Date().getTime(),
-                user: {
-                    _id: 123,
-                    name: 'Diego'
-                }
-            }));
+            dispatch(eventStartAddNew(formValues));
         }
 
         setTitleValid(true);

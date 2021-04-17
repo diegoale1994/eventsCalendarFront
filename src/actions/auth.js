@@ -46,11 +46,26 @@ export const startCheckingToken = () => {
                 name: body.name
             }));
         } else {
-            Swal.fire('Error', body.msg, 'error');
             dispatch(checkingFinish());
         }
     }
 }
+
+export const startLogout = () => {
+    return (dispatch) => {
+        localStorage.clear();
+        dispatch(logout());
+        dispatch(calendarPurge());
+    }
+}
+
+const calendarPurge = () => ({
+    type: types.eventPurgeCalendar
+})
+
+const logout = () => ({
+    type: types.authLogout
+})
 
 const checkingFinish = () => ({
     type: types.authCheckingFinish

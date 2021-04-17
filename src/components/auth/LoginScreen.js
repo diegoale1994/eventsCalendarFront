@@ -42,7 +42,7 @@ export const LoginScreen = () => {
     return (
         <div className="container login-container">
             <div className="row justify-content-around">
-                <div className="col-md-6 login-form-1">
+                <div className="col-md-5 login-form-1">
                     <div className="col-md-12">
                         <h3>Ingreso</h3>
                         <form onSubmit={handleLogin}>
@@ -80,7 +80,7 @@ export const LoginScreen = () => {
 
                 </div>
 
-                <div className="col-md-6 login-form-2">
+                <div className="col-md-5 login-form-2">
                     <div className="col-md-12">
                         <h3>Registro</h3>
                         <form onSubmit={handleRegister}>
